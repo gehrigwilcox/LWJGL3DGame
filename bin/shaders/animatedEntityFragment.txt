@@ -1,0 +1,22 @@
+#version 150
+
+in vec2 pass_textureCoords;
+in vec3 pass_normal;
+
+in vec3 toLightVector[4];
+
+out vec4 out_color;
+
+uniform sampler2D diffuseMap;
+
+uniform vec3 lightColour[4];
+uniform vec3 attenuation[4];
+
+const vec2 lightBias = vec2(0.7, 0.6);
+
+void main(void){
+	
+	vec4 diffuseColor = texture(diffuseMap, pass_textureCoords);		
+	vec3 unitNormal = normalize(pass_normal);
+	out_color = diffuseColor;
+}
