@@ -3,8 +3,8 @@ package objConverter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,21 +16,15 @@ import renderEngine.Loader;
 
 public class OBJFileLoader {
 
-	private static final String RES_LOC = "res/";
+	private static final String RES_LOC = "/res/";
 
 	public static RawModel loadOBJ(String objFileName, Loader loader) {
-		FileReader isr = null;
-		File objFile = new File(RES_LOC + objFileName + ".obj");
+		InputStreamReader isr = new InputStreamReader(Class.class.getResourceAsStream(RES_LOC + objFileName + ".obj"));
 		
 		Vector3f maxHeight = new Vector3f(-50,-50,-50);
 		Vector3f minHeight = new Vector3f(50,50,50);
 		
 		
-		try {
-			isr = new FileReader(objFile);
-		} catch (FileNotFoundException e) {
-			System.err.println("File not found in res; don't use any extention");
-		}
 		BufferedReader reader = new BufferedReader(isr);
 		String line;
 		List<Vertex> vertices = new ArrayList<Vertex>();

@@ -12,6 +12,8 @@ public class AnimatedEntity extends Entity{
 	
 	private final Joint rootJoint;
 	private final int jointCount;
+    
+    private final Matrix4f[] jointTransforms;
 	
 	private final Animator animator;
 
@@ -21,6 +23,7 @@ public class AnimatedEntity extends Entity{
 		this.rootJoint = rootJoint;
 		this.jointCount = jointCount;
 		this.animator = new Animator(this);
+        this.jointTransforms = new Matrix4f[jointCount];
 		rootJoint.calcInverseBindTransform(
 				new Matrix4f().rotate((float) Math.toRadians(-90), new Vector3f(1,0,0)));
 	}
@@ -37,11 +40,17 @@ public class AnimatedEntity extends Entity{
 		animator.update();
 	}
 	
-	public Matrix4f[] getJointTransforms(){
+	/*public Matrix4f[] getJointTransforms(){
 		Matrix4f[] jointMatricies = new Matrix4f[jointCount];
 		addJointsToArray(rootJoint, jointMatricies);
 		return jointMatricies;
-	}
+	}*/
+    
+    public Matrix4f[] getJointTransforms(){
+        addJointsToArray(rootJoint, jointTransforms);
+        return jointTransforms;
+        
+    }
 	
 	private void addJointsToArray(Joint headJoint, Matrix4f[] jointMatricies){
 		jointMatricies[headJoint.index] = headJoint.getAnimatedTransform();

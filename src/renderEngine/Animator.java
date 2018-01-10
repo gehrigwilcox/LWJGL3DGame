@@ -45,8 +45,7 @@ public class Animator {
     
     private void applyPoseToJoints(Map<String, Matrix4f> currentPose, Joint joint,
                                    Matrix4f parentTransform){
-        Matrix4f currentLocalTransform = currentPose.get(joint.name);
-        Matrix4f currentTransform = Matrix4f.mul(parentTransform, currentLocalTransform, null);
+        Matrix4f currentTransform = Matrix4f.mul(parentTransform, currentPose.get(joint.name), null);
         for(Joint childJoint : joint.children){
             applyPoseToJoints(currentPose, childJoint, currentTransform);
         }
@@ -93,7 +92,7 @@ public class Animator {
     
     private void increaseAnimationTime(){
         animationTime += DisplayManager.getFrameTimeSeconds();
-        if(animationTime > currentAnimation.getLength()){
+        if(animationTime >currentAnimation.getLength()){
             this.animationTime %= currentAnimation.getLength();
         }
     }

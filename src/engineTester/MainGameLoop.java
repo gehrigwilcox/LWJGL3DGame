@@ -181,7 +181,7 @@ public class MainGameLoop {
 	public static void setupText(){
 		TextMaster.init(loader);
 		
-		font = new FontType(loader.loadTexture("harrington"), new File("res/harrington.fnt"), "harrington");
+		font = new FontType(loader.loadTexture("harrington"), "harrington", "harrington");
 		text = new GUIText("This is some text!", 3f, font, new Vector2f(0f, 0f), 1f, true);
 		text.setColour(1, 0, 0);
 		text.remove();
@@ -361,7 +361,7 @@ public class MainGameLoop {
 			
 			updateRender();
 			
-			runtime.gc();
+			//runtime.gc();
 			
 			/*
 			 * memory usage
@@ -418,6 +418,7 @@ public class MainGameLoop {
 		renderGUI();
 		
 		DisplayManager.updateDisplay();
+		System.out.println(DisplayManager.getFrameTimeSeconds());
 	}
 	
 	public static void MainMenu(){

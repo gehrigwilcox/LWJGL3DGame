@@ -17,8 +17,8 @@ public class AnimatedEntityCreator {
 	public static final int MAX_WEIGHTS = 3;
 	
 	public static AnimatedEntity loadAnimatedEntity(String modelFileName, String textureFileName, Loader loader, Vector3f position, float rotX, float rotY, float rotZ){
-		String colladaFile = "res/" + modelFileName;
-		String textureFile = "res/" + textureFileName;
+		String colladaFile = "/res/" + modelFileName;
+		String textureFile = textureFileName;
 		
 		AnimatedModelData entityData = ColladaLoader.loadColladaModel(colladaFile, MAX_WEIGHTS);
 		

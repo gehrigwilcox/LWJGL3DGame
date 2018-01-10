@@ -13,9 +13,11 @@ public class AnimatedEntityShader extends ShaderProgram{
 	private static final int MAX_JOINTS = 50;
 	private static final int MAX_LIGHTS = StaticShader.MAX_LIGHTS;
 	
-	private static final String VERTEX_SHADER = "src/shaders/animatedEntityVertex.txt";
+	//private static final Matrix4f identity = Matrix4f.setIdentity(new Matrix4f());
+	
+	private static final String VERTEX_SHADER = "/shaders/animatedEntityVertex.txt";
 	//private static final String FRAGMENT_SHADER = "src/shaders/fragmentShader.txt";
-	private static final String FRAGMENT_SHADER = "src/shaders/animatedEntityFragment.txt";
+	private static final String FRAGMENT_SHADER = "/shaders/animatedEntityFragment.txt";
 	
 	private int location_jointTransforms[];
 	private int location_projectionViewMatrix;
@@ -71,7 +73,9 @@ public class AnimatedEntityShader extends ShaderProgram{
 			if(i<jointTransforms.length){
 				super.loadMatrix(location_jointTransforms[i], jointTransforms[i]);
 			}else{
-				super.loadMatrix(location_jointTransforms[i], Matrix4f.setIdentity(new Matrix4f()));
+				//super.loadMatrix(location_jointTransforms[i], Matrix4f.setIdentity(new Matrix4f()));
+				//super.loadMatrix(location_jointTransforms[i], identity);
+				super.loadIdentityMatrix(location_jointTransforms[i]);
 			}
 		}
 	}

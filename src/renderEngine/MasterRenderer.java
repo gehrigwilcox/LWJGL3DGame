@@ -166,7 +166,7 @@ public class MasterRenderer {
 	public void processEntity(Entity entity) {
 		TexturedModel entityModel = entity.getModel();
 		List<Entity> batch = entities.get(entityModel);
-		if (batch != null) {
+		if (batch != null && !entities.containsValue(entity)) {
 			batch.add(entity);
 		} else {
 			List<Entity> newBatch = new ArrayList<Entity>();

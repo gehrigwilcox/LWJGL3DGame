@@ -31,6 +31,10 @@ public class AnimatedEntityRenderer {
 	}
 	
 	public void render(Map<TexturedModel, List<AnimatedEntity>> entities){
+		
+		//this *whole* function causes a ton of choppyness 
+		
+
 		prepare();
 		
 		for (TexturedModel model : entities.keySet()) {
@@ -40,10 +44,10 @@ public class AnimatedEntityRenderer {
 				
 				shader.loadJointTransforms(entity.getJointTransforms());
 				
-				prepareInstance(entity);
+				//prepareInstance(entity);
 				
-				GL11.glDrawElements(GL11.GL_TRIANGLES, model.getRawModel().getVertexCount(),
-						GL11.GL_UNSIGNED_INT, 0);
+				//GL11.glDrawElements(GL11.GL_TRIANGLES, model.getRawModel().getVertexCount(),
+					//	GL11.GL_UNSIGNED_INT, 0);
 				
 				
 			}
@@ -63,9 +67,8 @@ public class AnimatedEntityRenderer {
 	}
 	
 	private void prepareInstance(Entity entity){
-		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entity.getPosition(),
-				entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
-		shader.loadTransformationMatrix(transformationMatrix);
+		shader.loadTransformationMatrix(Maths.createTransformationMatrix(entity.getPosition(),
+				entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale()));
 	}
 	
 	private void finish(){

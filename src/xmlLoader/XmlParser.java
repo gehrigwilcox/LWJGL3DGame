@@ -1,9 +1,8 @@
 package xmlLoader;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,8 +17,8 @@ public class XmlParser {
 	public static XmlNode loadXmlFile(String filePath){
 		BufferedReader reader = null;
 		try{
-			//InputStreamReader isr = new InputStreamReader(Class.class.getResourceAsStream(filePath));
-			FileReader isr = new FileReader(new File(filePath));
+			InputStreamReader isr = new InputStreamReader(Class.class.getResourceAsStream(filePath));
+			//FileReader isr = new FileReader(new File(filePath));
 			reader = new BufferedReader(isr);
 		} catch (Exception e){
 			e.printStackTrace();

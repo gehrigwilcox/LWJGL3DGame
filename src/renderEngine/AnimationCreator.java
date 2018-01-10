@@ -16,7 +16,7 @@ import toolbox.Quaternion;
 public class AnimationCreator {
 	
 	public static Animation loadAnimation(String colladaFileName){
-		AnimationData animationData = ColladaLoader.loadColladaAnimation("res/" + colladaFileName);
+		AnimationData animationData = ColladaLoader.loadColladaAnimation("/res/" + colladaFileName);
 		KeyFrame[] frames = new KeyFrame[animationData.keyFrames.length];
 		int pointer = 0;
 		for(KeyFrameData frameData : animationData.keyFrames){

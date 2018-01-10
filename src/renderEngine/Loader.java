@@ -2,6 +2,7 @@ package renderEngine;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -107,7 +108,7 @@ public class Loader {
 	public int loadTexture(String fileName) {
 		Texture texture = null;
 		try {
-			InputStream textureFile = new FileInputStream("res/" + fileName + ".png");
+			InputStream textureFile = Class.class.getResourceAsStream("/res/" + fileName + ".png");
 			texture = TextureLoader.getTexture("PNG", textureFile);
 			textureFile.close();
 			GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
@@ -141,7 +142,7 @@ public class Loader {
 		GL11.glBindTexture(GL13.GL_TEXTURE_CUBE_MAP, texID);
 
 		for (int i = 0; i < textureFiles.length; i++) {
-			TextureData data = decodeTextureFile("res/" + textureFiles[i] + ".png");
+			TextureData data = decodeTextureFile("/res/" + textureFiles[i] + ".png");
 			GL11.glTexImage2D(GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL11.GL_RGBA, data.getWidth(), data.getHeight(), 0,
 					GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, data.getBuffer());
 		}
@@ -159,7 +160,7 @@ public class Loader {
 		int height = 0;
 		ByteBuffer buffer = null;
 		try {
-			FileInputStream in = new FileInputStream(fileName);
+			InputStream in = Class.class.getResourceAsStream(fileName);
 			PNGDecoder decoder = new PNGDecoder(in);
 			width = decoder.getWidth();
 			height = decoder.getHeight();
